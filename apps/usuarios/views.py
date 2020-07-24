@@ -1,13 +1,20 @@
 from django.shortcuts import *
-from django.http import HttpResponse
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-from django.views.generic import CreateView
-from django.urls import reverse_lazy
-# Create your views here.
 
+from django.contrib.auth import logout as do_logout
+from apps.usuarios.models import *
 def index(request):
-    return render(request, 'usuarios/index.html')
+    #if request.user.is_authenticated:
+        return render(request, 'usuarios/index.html')
+        # En otro caso redireccionamos al login
+    #return  redirect('/login')
 
-def login(request):
-    return render(request, 'usuarios/login.html')
+def logout(request):
+    # Finalizamos la sesión
+    do_logout(request)
+    # Redireccionamos a la portada
+    return redirect('/')
+
+def lineas_list(resquest):
+    trafico = Trafico_linea.objects.all()
+    contexto = {'trafico':trafico}
+    return render(resquest,'usuarios/registros.html',contexto)

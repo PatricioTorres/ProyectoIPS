@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>Title</title>
+</head>
+<body>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Año</th>
+      <th scope="col">Trimestre</th>
+      <th scope="col">equipo</th>
+      <th scope="col">modalidad</th>
+        <th scope="col">lineas</th>
+        <th scope="col">Trafico cursado</th>
+        <th scope="col">empresa</th>
+        <th scope="col">usuarios</th>
+
+    </tr>
+  </thead>
+  <tbody>
+{% if trafico %}
+{% for linea in trafico %}
+    <tr>
+      <th scope="row">{{ linea.temporada }}</th>
+      <td>{{ linea.trimestre }}</td>
+      <td>{{ linea.equipo }}</td>
+      <td>{{ linea.modalidad }}</td>
+    <td>{{ linea.lineas }}</td>
+    <td>{{ linea.t_cursado }}</td>
+    <td>{{ linea.usuario.empresa.nombre }}</td>
+    <td>{{ linea.usuario.nombre }}</td>
+    </tr>
+{% endfor %}
+  {% else %}
+  <tr class="table-danger">
+      <th scope="row" colspan="7" style="text-align:center" >No hay registros</th>
+  </tr>
+  {% endif %}
+    </tbody>
+</table>
+</body>
+</html>

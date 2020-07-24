@@ -9,7 +9,8 @@
 </head>
 <body>
 <div class="wrapper">
-    <form class="form-signin">
+    <form class="form-signin" method="post">
+        {% csrf_token %}
       <h2 class="form-signin-heading">Inicie sesion </h2>
       <input type="text" class="form-control" name="username" placeholder="Email " required="" autofocus="" />
       <input type="password" class="form-control" name="password" placeholder="Clave" required=""/>
