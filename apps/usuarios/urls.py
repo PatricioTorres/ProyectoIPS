@@ -6,5 +6,6 @@ from apps.usuarios.views import *
 urlpatterns = [
     path('', index,name='index'),
     path('logout',logout,name='logout'),
-    path('registroLineas',lineas_list,name='lineaslist')
+    path('registroLineas',lineas_list,name='lineaslist'),
+    path('listaEmpresas',empresa_list,name='empresalist')
 ]

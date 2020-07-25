@@ -18,3 +18,8 @@ def lineas_list(resquest):
     trafico = Trafico_linea.objects.all()
     contexto = {'trafico':trafico}
     return render(resquest,'usuarios/registros.html',contexto)
+
+def empresa_list(resquest):
+    empresa = Empresa.objects.all()
+    contexto = {'empresa':empresa}
+    return render(resquest,'usuarios/empresa_list.html',contexto)

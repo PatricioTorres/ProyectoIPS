@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Trafico</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tablas-style.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="./">Lineas Telefonicas</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./registroLineas">Lineas Registros</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Empresas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+    </ul>
+  </div>
+{% if user.is_authenticated %}
+  <div class="w3-dropdown-hover">
+    <button class="w3-button w3-black">{{ user.get_username }}</button>
+    <div class="w3-dropdown-content w3-bar-block w3-border">
+      <a href="#" class="w3-bar-item w3-button">Link 1</a>
+      <a href="#" class="w3-bar-item w3-button">Link 2</a>
+      <a href="logout" class="w3-bar-item w3-button">Logout</a>
+    </div>
+  </div>
+{% else %}
+    <a class="btn btn-outline-primary" href="login">Login</a>
+
+
+{% endif %}
+</nav>
+<div style="text-align:center;">
+<h1>Empresas</h1>
+
+<table class="table table-hover">
+  <thead>
+     <tr>
+    <th>Nombre</th>
+    <th>Razon Social</th>
+    <th>Nombre Comercial</th>
+    <th>RUC</th>
+    <th>Estado</th>
+    <th>Fecha de inicio de actividades</th>
+
+
+  </tr>
+  </thead>
+<tbody>
+{% if empresa %}
+{% for linea in empresa %}
+    <tr>
+      <th scope="row">{{ linea.nombre }}</th>
+      <td>{{ linea.razon_social }}</td>
+      <td>{{ linea.nombre_comercial }}</td>
+      <td>{{ linea.ruc }}</td>
+    <td>{{ linea.estado }}</td>
+    <td>{{ linea.fecha_inicio }}</td>
+    </tr>
+{% endfor %}
+  {% else %}
+  <tr class="table-danger">
+      <th scope="row" colspan="8" style="text-align:center" >No hay registros</th>
+  </tr>
+  {% endif %}
+    </tbody>
+</table>
+</div>
+
+
+</body>
+</html>
+

@@ -1,27 +1,68 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
+    <title>Trafico</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/tablas-style.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 </head>
 <body>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Año</th>
-      <th scope="col">Trimestre</th>
-      <th scope="col">equipo</th>
-      <th scope="col">modalidad</th>
-        <th scope="col">lineas</th>
-        <th scope="col">Trafico cursado</th>
-        <th scope="col">empresa</th>
-        <th scope="col">usuarios</th>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="./">Lineas Telefonicas</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="registroLineas">Lineas Registros</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./listaEmpresas">Empresas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+    </ul>
+  </div>
+{% if user.is_authenticated %}
+  <div class="w3-dropdown-hover">
+    <button class="w3-button w3-black">{{ user.get_username }}</button>
+    <div class="w3-dropdown-content w3-bar-block w3-border">
+      <a href="#" class="w3-bar-item w3-button">Link 1</a>
+      <a href="#" class="w3-bar-item w3-button">Link 2</a>
+      <a href="logout" class="w3-bar-item w3-button">Logout</a>
+    </div>
+  </div>
+{% else %}
+    <a class="btn btn-outline-primary" href="login">Login</a>
 
-    </tr>
+
+{% endif %}
+</nav>
+<div style="text-align:center;">
+<h1>Registro Trafico de lineas</h1>
+
+<table class="rwd-table">
+  <thead>
+      <tr>
+        <th>AÑO</th>
+        <th>TRIMESTRE</th>
+        <th>EQUIPO</th>
+        <th>MODALIDAD</th>
+        <th>LINEAS</th>
+        <th>T_CURSADO</th>
+        <th>EMPRESA</th>
+        <th>Usuario</th>
+      </tr>
   </thead>
-  <tbody>
+<tbody>
 {% if trafico %}
 {% for linea in trafico %}
     <tr>
@@ -37,10 +78,14 @@
 {% endfor %}
   {% else %}
   <tr class="table-danger">
-      <th scope="row" colspan="7" style="text-align:center" >No hay registros</th>
+      <th scope="row" colspan="8" style="text-align:center" >No hay registros</th>
   </tr>
   {% endif %}
     </tbody>
 </table>
+</div>
+
+
 </body>
 </html>
+
